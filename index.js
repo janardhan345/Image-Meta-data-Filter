@@ -6,8 +6,13 @@ import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import authRouter from './routes/auth.js';
 import imagesRouter from './routes/images.js';
-
+import helmet from 'helmet';
+import { generalLimiter, authLimiter } from './middleware/ratelimiter.js';
 validateEnv();
+
+app.use(generalLimiter);
+app.use('/api/v1/auth', authLimiter, authRouter);
+app.use(helmet());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

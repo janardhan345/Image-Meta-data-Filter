@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { validateEnv } from './config/validateEnv.js';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -6,6 +7,7 @@ import connectDB from './config/db.js';
 import authRouter from './routes/auth.js';
 import imagesRouter from './routes/images.js';
 
+validateEnv();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

@@ -2,10 +2,11 @@ import { Router } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import { validateRegister, validateLogin } from '../middleware/validate.js';
 console.log('JWT_SECRET in auth route:', process.env.JWT_SECRET);
 const router = Router();
 
-router.post('/register',async (req, res, next) => {
+router.post('/register',validateRegister,async (req, res, next) => {
     try{
         const {name, email, password} = req.body;
         
@@ -41,7 +42,7 @@ router.post('/register',async (req, res, next) => {
     }
 });
 
-router.post('/login',async(req,res,next)=>{
+router.post('/login',validateLogin,async(req,res,next)=>{
     try{
         const {email, password} = req.body;
 

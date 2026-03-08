@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 import authRouter from './routes/auth.js';
 import imagesRouter from './routes/images.js';
 import helmet from 'helmet';
+import cors from 'cors';
 import { generalLimiter, authLimiter } from './middleware/ratelimiter.js';
 validateEnv();
 
@@ -16,6 +17,14 @@ app.use(helmet());
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+ const corsOption = {
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+  allowedHeaders: ['content-type', 'Authorization'],
+  credentials:true
+ };
+
+ app.use(cors(corsOptions));
 const app = express();
 const PORT = process.env.PORT || 3000;
 

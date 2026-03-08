@@ -5,12 +5,12 @@
 
 ## Dependencies and it's purpose: 
 
-express -> web framework
-mongoose -> Database 
-jsonwebtoken -> Authorization 
-bcryptjs -> to hash passwords 
-dotenv -> to load variables from .env file  
-multer -> handling file uploads
-exif-parser -> extracting EXIF metadata from uploaded images
-
-nodemon -> auto restarts server when you save changes ( dev dependency )
+- express -> web framework
+- mongoose -> Database 
+- jsonwebtoken -> Authorization 
+- bcryptjs -> to hash passwords 
+- dotenv -> to load variables from .env file  
+- multer -> handling file uploads
+- exif-parser -> extracting EXIF metadata from uploaded images
+---
+- nodemon -> auto restarts server when you save changes ( dev dependency )

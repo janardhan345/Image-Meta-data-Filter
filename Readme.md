@@ -12,5 +12,8 @@
 - dotenv -> to load variables from .env file  
 - multer -> handling file uploads
 - exif-parser -> extracting EXIF metadata from uploaded images
+- cors -> rejecting random sites from calling API 
+- express-rate-limiter -> rate limiter 
+- helmet -> security headers.
 ---
 - nodemon -> auto restarts server when you save changes ( dev dependency )

@@ -4,7 +4,7 @@ const requireAuth = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
     if(!authHeader || !authHeader.startsWith('Bearer ')) {
-        return res.status(401).json({
+        return res.status(401).json({ // 401 unauthorized 
             success:false,
             error: 'No token provided'
         });

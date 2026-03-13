@@ -31,8 +31,11 @@ export const validateRegister = [
 ];
 
 export const validateLogin = [
-  body('email').trim().isEmail().withMessage('Valid email required'),
-  body('password').notEmpty().withMessage('Password required'),
+  body('email')
+  .trim()
+  .isEmail().withMessage('Valid email required'),
+  body('password')
+  .notEmpty().withMessage('Password required'),
 
   (req, res, next) => {
     const errors = validationResult(req);

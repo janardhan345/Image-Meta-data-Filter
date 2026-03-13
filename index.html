@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Meta Data Filter - Project Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sand: '#F3E9D7',
+                        oat: '#E8D9C4',
+                        clay: '#C7A27C',
+                        bark: '#7A573A',
+                        espresso: '#3A2516'
+                    },
+                    fontFamily: {
+                        display: ['Cormorant Garamond', 'serif'],
+                        body: ['Manrope', 'sans-serif']
+                    },
+                    boxShadow: {
+                        warm: '0 12px 30px rgba(58, 37, 22, 0.12)'
+                    },
+                    keyframes: {
+                        rise: {
+                            '0%': { opacity: '0', transform: 'translateY(16px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    },
+                    animation: {
+                        rise: 'rise 0.7s ease-out both'
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="font-body bg-sand text-espresso min-h-screen">
+    <div class="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_rgba(199,162,124,0.30),_transparent_42%),radial-gradient(circle_at_bottom_left,_rgba(122,87,58,0.18),_transparent_35%)]"></div>
+
+    <header class="px-6 pt-10 pb-8 md:px-12 lg:px-20 animate-rise">
+        <div class="max-w-6xl mx-auto rounded-3xl bg-oat/85 backdrop-blur border border-clay/40 shadow-warm p-7 md:p-10">
+            <p class="uppercase tracking-[0.22em] text-xs md:text-sm text-bark font-semibold">Project Documentation</p>
+            <h1 class="font-display text-4xl md:text-6xl leading-tight mt-3">Image Meta Data Filter</h1>
+            <p class="mt-4 text-sm md:text-base text-bark max-w-3xl">
+                A backend service that authenticates users, accepts image uploads, extracts EXIF metadata,
+                stores records in MongoDB, and returns filterable image collections.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3 text-xs md:text-sm">
+                <span class="px-3 py-1 rounded-full bg-clay/30 border border-clay/50">Node + Express</span>
+                <span class="px-3 py-1 rounded-full bg-clay/30 border border-clay/50">MongoDB + Mongoose</span>
+                <span class="px-3 py-1 rounded-full bg-clay/30 border border-clay/50">JWT Authentication</span>
+                <span class="px-3 py-1 rounded-full bg-clay/30 border border-clay/50">EXIF Metadata Extraction</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="px-6 pb-12 md:px-12 lg:px-20 space-y-8">
+        <section class="max-w-6xl mx-auto rounded-3xl bg-[#F8EFE2] border border-clay/40 shadow-warm p-6 md:p-9 animate-rise" style="animation-delay: 100ms;">
+            <h2 class="font-display text-3xl md:text-4xl">1) What It Does For Users</h2>
+            <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <article class="rounded-2xl bg-sand border border-clay/40 p-5">
+                    <h3 class="font-semibold text-lg">Secure Sign Up and Login</h3>
+                    <p class="mt-2 text-sm text-bark">Users register and log in to receive JWT tokens, so every image action is scoped to the correct account.</p>
+                </article>
+                <article class="rounded-2xl bg-sand border border-clay/40 p-5">
+                    <h3 class="font-semibold text-lg">Upload and Auto-Read Metadata</h3>
+                    <p class="mt-2 text-sm text-bark">When users upload JPEG, PNG, or TIFF files, EXIF metadata like camera, capture date, and dimensions is extracted automatically.</p>
+                </article>
+                <article class="rounded-2xl bg-sand border border-clay/40 p-5">
+                    <h3 class="font-semibold text-lg">Find Images Faster</h3>
+                    <p class="mt-2 text-sm text-bark">Users can filter by year, camera, and location fields and sort by newest, oldest, metadata date, or filename.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto rounded-3xl bg-[#F7ECDF] border border-clay/40 shadow-warm p-6 md:p-9 animate-rise" style="animation-delay: 180ms;">
+            <h2 class="font-display text-3xl md:text-4xl">2) Folder, File, and Package Map</h2>
+            <p class="mt-3 text-sm md:text-base text-bark">How each folder contributes to the app and which package powers it.</p>
+
+            <div class="mt-6 grid lg:grid-cols-2 gap-4">
+                <article class="rounded-2xl border border-clay/40 bg-sand p-5">
+                    <h3 class="font-semibold text-lg">Core App Layer</h3>
+                    <ul class="mt-3 space-y-2 text-sm text-bark list-disc pl-5">
+                        <li>index.js: server bootstrap, middleware setup, static uploads route, API route mounting, 404 and global error handling.</li>
+                        <li>config/db.js: MongoDB connection using mongoose.</li>
+                        <li>config/validateEnv.js: startup guard that verifies required environment variables.</li>
+                    </ul>
+                </article>
+
+                <article class="rounded-2xl border border-clay/40 bg-sand p-5">
+                    <h3 class="font-semibold text-lg">Security and Validation Middleware</h3>
+                    <ul class="mt-3 space-y-2 text-sm text-bark list-disc pl-5">
+                        <li>middleware/ratelimiter.js: request throttling for general and auth-heavy routes.</li>
+                        <li>middleware/requireAuth.js: checks Bearer token, verifies JWT, injects user claims into request.</li>
+                        <li>middleware/validate.js: request-body validation for register/login with express-validator.</li>
+                    </ul>
+                </article>
+
+                <article class="rounded-2xl border border-clay/40 bg-sand p-5">
+                    <h3 class="font-semibold text-lg">Business Routes and Models</h3>
+                    <ul class="mt-3 space-y-2 text-sm text-bark list-disc pl-5">
+                        <li>routes/auth.js: register/login endpoints, password hashing, JWT generation.</li>
+                        <li>routes/images.js: upload, list, view, update, and delete image records with ownership checks.</li>
+                        <li>models/User.js and models/Image.js: MongoDB schemas for users and image metadata documents.</li>
+                    </ul>
+                </article>
+
+                <article class="rounded-2xl border border-clay/40 bg-sand p-5">
+                    <h3 class="font-semibold text-lg">Storage and Infra Files</h3>
+                    <ul class="mt-3 space-y-2 text-sm text-bark list-disc pl-5">
+                        <li>uploads/: physical directory where multer stores image files.</li>
+                        <li>package.json: scripts and dependency catalog for runtime and development.</li>
+                        <li>docker-compose.yml: container orchestration entry point for local stack setup.</li>
+                    </ul>
+                </article>
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-bark/20 bg-[#F1E2CD] p-5">
+                <h3 class="font-semibold text-lg">Packages Used and Why</h3>
+                <p class="mt-2 text-sm text-bark">
+                    express (API framework), mongoose (MongoDB ORM), jsonwebtoken (auth tokens), bcryptjs (password hashing),
+                    dotenv (env loading), multer (uploads), exif-parser (metadata extraction), cors (cross-origin policy),
+                    helmet (security headers), express-rate-limit (abuse protection), express-validator (input validation), nodemon (dev reload).
+                </p>
+            </div>
+        </section>
+
+        <section class="max-w-6xl mx-auto rounded-3xl bg-[#F5E8D7] border border-clay/40 shadow-warm p-6 md:p-9 animate-rise" style="animation-delay: 260ms;">
+            <h2 class="font-display text-3xl md:text-4xl">3) End-to-End Workflow</h2>
+            <p class="mt-3 text-sm md:text-base text-bark">Which file provides what logic, and how requests flow through the project.</p>
+
+            <ol class="mt-6 space-y-3 text-sm md:text-base">
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>1. Boot:</strong> index.js loads env vars, validates required keys, then connects to MongoDB.</li>
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>2. Global Guards:</strong> index.js attaches rate limiting, helmet, CORS, and JSON parsing middleware.</li>
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>3. Auth Entry:</strong> routes/auth.js handles register/login with validate.js checks, bcryptjs hashing, and JWT token creation.</li>
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>4. Protected Access:</strong> routes/images.js requires middleware/requireAuth.js to verify Bearer tokens and bind user identity.</li>
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>5. Upload Pipeline:</strong> multer stores files in uploads/, exif-parser reads metadata, and models/Image.js persists records to MongoDB.</li>
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>6. Query and Manage:</strong> image list endpoint applies user scope, filters, sorting, and pagination; update/delete enforce ownership checks.</li>
+                <li class="rounded-xl border border-clay/40 bg-sand p-4"><strong>7. Error Paths:</strong> unknown routes return 404 and unexpected exceptions are routed to the global error handler.</li>
+            </ol>
+        </section>
+    </main>
+</body>
+</html>

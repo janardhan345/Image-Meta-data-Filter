@@ -51,7 +51,7 @@ router.post('/login',validateLogin,async(req,res,next)=>{
         if(!user) {
             return res.status(401).json({
                 success:false,
-                error:'Invalid credentials'
+                error:'User does not exist'
             });
         }
         const match = await bcrypt.compare(password, user.password);

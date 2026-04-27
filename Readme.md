@@ -27,7 +27,7 @@
 ---
 - nodemon -> auto restarts server when you save changes ( dev dependency )
 
-[Render](https://image-meta-data-filter-1.onrender.com/api/v1)
+[Render](https://image-meta-data-filter.onrender.com/api/v1)
 
 Links for use in Postman 
 
